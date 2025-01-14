@@ -19,7 +19,7 @@ sequelize.sync({ alter: true })
 
 // Configuración de CORS
 app.use(cors({
-    origin: ['*'], // Cambia esto por la URL de tu frontend
+    origin: '*', // Cambia esto por la URL de tu frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
     allowedHeaders: ['Content-Type', 'Authorization'], // Encabezados permitidos
     credentials: true, // Permitir credenciales
