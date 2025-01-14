@@ -16,7 +16,11 @@ sequelize.sync({ alter: true })
     .then(() => console.log('Base de datos sincronizada'))
     .catch((err) => console.error('Error al sincronizar la base de datos:', err));
 
-app.use(cors());
+app.use(cors({
+        origin: 'https://back-vet-lovat.vercel.app/', // Cambia esto por la URL de tu frontend
+        credentials: true,
+}));
+    
 app.use(express.json({ limit: '10mb' })); // Aumenta el límite si las firmas son grandes
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
