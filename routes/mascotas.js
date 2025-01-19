@@ -6,7 +6,7 @@ const Mascotas = require('../models/Mascotas');
 router.post('/', async (req, res) => {
     try {
         const { nombre, peso, propietario_nombre, propietario_contacto, domicilio } = req.body;
-        const mascota = await Mascotas.create({ nombre, peso, propietario_nombre, propietario_contacto, domicilio });
+        const mascota = await Mascotas.create({ nombre, peso: peso || null, propietario_nombre, propietario_contacto, domicilio });
         res.status(201).json(mascota);
     } catch (error) {
         res.status(500).json({ error: 'Error al crear la mascota.' });
@@ -69,7 +69,7 @@ router.put('/:id', async (req, res) => {
         }
 
         mascota.nombre = nombre || mascota.nombre;
-        mascota.peso = peso || mascota.peso;
+        mascota.peso = peso !== undefined ? peso : mascota.peso;
         mascota.propietario_nombre = propietario_nombre || mascota.propietario_nombre;
         mascota.propietario_contacto = propietario_contacto || mascota.propietario_contacto;
         mascota.domicilio = domicilio || mascota.domicilio;

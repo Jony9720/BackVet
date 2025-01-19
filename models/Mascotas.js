@@ -13,7 +13,7 @@ const Mascotas = sequelize.define('Mascotas', {
     },
     peso: {
         type: DataTypes.DECIMAL(5, 2),
-        allowNull: false,
+        allowNull: true,
     },
     propietario_nombre: {
         type: DataTypes.STRING(100),
