@@ -4,9 +4,20 @@ const Mascotas = require('../models/Mascotas');
 
 // Crear una mascota
 router.post('/', async (req, res) => {
+    const { nombre, peso, propietario_nombre, propietario_contacto, domicilio } = req.body;
+
+    if (!nombre || !propietario_nombre || !propietario_contacto || !domicilio) {
+        return res.status(400).json({ error: 'Faltan campos obligatorios.' });
+    }
+
     try {
-        const { nombre, peso, propietario_nombre, propietario_contacto, domicilio } = req.body;
-        const mascota = await Mascotas.create({ nombre, peso: peso || null, propietario_nombre, propietario_contacto, domicilio });
+        const mascota = await Mascotas.create({
+            nombre,
+            peso: peso || null,
+            propietario_nombre,
+            propietario_contacto,
+            domicilio,
+        });
         res.status(201).json(mascota);
     } catch (error) {
         res.status(500).json({ error: 'Error al crear la mascota.' });
