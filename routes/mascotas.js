@@ -11,11 +11,12 @@ router.post('/', async (req, res) => {
     }
 
     try {
+        const contactos = propietario_contacto.split(',').map(contacto => contacto.trim()); // Manejar múltiples contactos
         const mascota = await Mascotas.create({
             nombre,
             peso: peso || null,
             propietario_nombre,
-            propietario_contacto,
+            propietario_contacto: contactos.join(', '),
             domicilio,
         });
         res.status(201).json(mascota);
