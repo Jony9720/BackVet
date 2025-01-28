@@ -20,7 +20,7 @@ const Mascotas = sequelize.define('Mascotas', {
         allowNull: false,
     },
     propietario_contacto: {
-        type: DataTypes.TEXT,
+        type: DataTypes.STRING(16),
         allowNull: false,
     },
     domicilio: { // Agregar el nuevo campo aquí
